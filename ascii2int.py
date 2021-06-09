@@ -67,6 +67,10 @@ def ascii2int(ascii_str):
     if type(ascii_str) is not str:
         raise ValueError("The current input is not a string, please input a string!")
 
+    # Replace hyphens and transform input to lowercase
+    ascii_str = ascii_str.replace('-', ' ')
+    ascii_str = ascii_str.lower()
+
     ascii_arr = ascii_str.strip().split()  # strip extra spaces and split sentence into words
     ascii_arr_clean = [i for i in ascii_arr if i in numbers_list] # remove words any words not in the numbers_list, for example "and"
     
