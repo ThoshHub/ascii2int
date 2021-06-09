@@ -107,7 +107,7 @@ def ascii2int(ascii_str):
             else:
                 thousand_multiplier = convert_word_to_int(ascii_arr_clean[0:thousands_index])
             sum += thousand_multiplier * 1000
-        
+
         # if the string has thousands, calculate hundreds alone by omitting the thousands place
         if thousands_index > -1 and thousands_index != len(ascii_arr_clean)-1:
             hundreds = convert_word_to_int(ascii_arr_clean[thousands_index+1:])
@@ -123,7 +123,7 @@ def ascii2int(ascii_str):
         # no hundreds
         else:
             hundreds = 0
-        sum += hundreds  
+        sum += hundreds
 
     return sum
 
@@ -143,4 +143,6 @@ l = "four hundred and twenty thousand four hundred and twenty one"
 m = "one million and forty"
 n = "six hundred million and two hundred thousand and forty two"
 o = "ten billion forty thousand four hundred and twenty one"
-print(ascii2int(o))
+p = "ten million and forty"
+q = "ten billion and forty"
+print(ascii2int(q))
