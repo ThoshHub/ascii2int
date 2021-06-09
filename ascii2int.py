@@ -1,3 +1,5 @@
+import sys
+
 numbers_list = {
     'zero': 0,
     'one': 1,
@@ -128,21 +130,27 @@ def ascii2int(ascii_str):
     return sum
 
 # Driver code, with test cases
-a = "one hundred"
-b = "four hundred"
-c = "five hundred and twenty one"
-d = "two"
-e = "forty"
-f = "five hundred and twelve"
-g = "six hundred and one"
-h = "four hundred forty two"
-i = "four thousand four hundred and twelve"
-j = "four thousand four hundred and twenty one"
-k = "forty thousand four hundred and twenty one"
-l = "four hundred and twenty thousand four hundred and twenty one"
-m = "one million and forty"
-n = "six hundred million and two hundred thousand and forty two"
-o = "ten billion forty thousand four hundred and twenty one"
-p = "ten million and forty"
-q = "ten billion and forty"
-print(ascii2int(q))
+test_a = "one hundred"
+test_b = "four hundred"
+test_c = "five hundred and twenty one"
+test_d = "two"
+test_e = "forty"
+test_f = "five hundred and twelve"
+test_g = "six hundred and one"
+test_h = "four hundred forty two"
+test_i = "four thousand four hundred and twelve"
+test_j = "four thousand four hundred and twenty one"
+test_k = "forty thousand four hundred and twenty one"
+test_l = "four hundred and twenty thousand four hundred and twenty one"
+test_m = "one million and forty"
+test_n = "six hundred million and two hundred thousand and forty two"
+test_o = "ten billion forty thousand four hundred and twenty one"
+test_p = "ten million and forty"
+test_q = "ten billion and forty"
+test_p = "twenty nine billion four hundred thirty two million six hundred forty seven thousand nine hundred and twenty two"
+
+if(len(sys.argv) > 1):
+    num = " ".join(sys.argv[1:])
+    print(ascii2int(num))
+else:
+    print(ascii2int(test_p))
