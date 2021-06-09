@@ -145,29 +145,15 @@ def ascii2int(ascii_str):
 
     return sum
 
-# Driver code, with test cases
-test_a = "one hundred"
-test_b = "four hundred"
-test_c = "five hundred and twenty one"
-test_d = "two"
-test_e = "forty"
-test_f = "five hundred and twelve"
-test_g = "six hundred and one"
-test_h = "four hundred forty two"
-test_i = "four thousand four hundred and twelve"
-test_j = "four thousand four hundred and twenty one"
-test_k = "forty thousand four hundred and twenty one"
-test_l = "four hundred and twenty thousand four hundred and twenty one"
-test_m = "one million and forty"
-test_n = "six hundred million and two hundred thousand and forty two"
-test_o = "ten billion forty thousand four hundred and twenty one"
-test_p = "ten million and forty"
-test_q = "ten billion and forty"
-test_r = "twenty nine billion four hundred thirty two million six hundred forty seven thousand nine hundred and twenty two"
-test_s = "nine hundred and ninety nine billion nine hundred and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine"
+# Driver code, with default case
+default_case = "one hundred"
 
-if(len(sys.argv) > 1):
-    num = " ".join(sys.argv[1:])
-else:
-    num = test_s
-print("Input: \n" + num + " \nOutput: \n" + str(ascii2int(num)))
+def main():
+    if(len(sys.argv) > 1):
+        num = " ".join(sys.argv[1:])
+    else:
+        num = default_case
+    print("Input: \n" + num + " \nOutput: \n" + str(ascii2int(num)))
+
+if __name__ == "__main__":
+    main()
