@@ -62,6 +62,11 @@ def convert_word_to_int(ascii_arr_clean):
 
 # converts text to integers
 def ascii2int(ascii_str):
+
+    # Check if the input is a string
+    if type(ascii_str) is not str:
+        raise ValueError("The current input is not a string, please input a string!")
+
     ascii_arr = ascii_str.strip().split()  # strip extra spaces and split sentence into words
     ascii_arr_clean = [i for i in ascii_arr if i in numbers_list] # remove words any words not in the numbers_list, for example "and"
     
@@ -154,4 +159,4 @@ if(len(sys.argv) > 1):
     num = " ".join(sys.argv[1:])
 else:
     num = test_s
-print("Input: \n\t" + num + " \nOutput: \n\t" + str(ascii2int(num)))
+print("Input: \n" + num + " \nOutput: \n" + str(ascii2int(num)))
