@@ -35,6 +35,11 @@ numbers_list = {
     'billion': 1000000000
 }
 
+'''
+The following method converts an array of number words into an integer,
+input: a list of number words, for example ["five", "hundred"]
+output: a single integer, for example 500
+'''
 def convert_word_to_int(ascii_arr_clean):
     # replace string with number representation
     # for example ['four', 'hundred', 'ten'] becomes [4, 100, 10]
@@ -92,14 +97,14 @@ def ascii2int(ascii_str):
         return numbers_list[ascii_arr_clean[0]]
     else: # if the number has more than one word, feed it into the convert_word_to_int function
         
-        # if the number has a billions, then get the billions multiplier
+        # if the number has a billions, then get the billions multiplier using everything preceding the billions_index
         # for example ["forty", "billion"] will return 40 which is multiplied by 1,000,000
         # millions places and less are processed below
         if billions_index > -1:
             billion_multiplier = convert_word_to_int(ascii_arr_clean[0:billions_index])
             sum += billion_multiplier * 1000000000
 
-        # if the number has a millions, then get the millions multiplier
+        # if the number has a millions, then get the millions multiplier using everything preceding the millions_index
         # for example ["four", "million"] will return 4 which is multiplied by 1,000,000
         # thousands places and less are processed below
         if millions_index > -1:
@@ -111,7 +116,7 @@ def ascii2int(ascii_str):
                 million_multiplier = convert_word_to_int(ascii_arr_clean[0:millions_index])
             sum += million_multiplier * 1000000
             
-        # if the number does have a thousands, then get the thousands multiplier
+        # if the number does have a thousands, then get the thousands multiplier using everything preceding the thousands_index
         # for example ["four", "hundred", "thousand"] will return 400 which will be multiplied by 1000
         # hundreds and less are processed below
         if thousands_index > -1:
@@ -126,22 +131,23 @@ def ascii2int(ascii_str):
                 thousand_multiplier = convert_word_to_int(ascii_arr_clean[0:thousands_index])
             sum += thousand_multiplier * 1000
 
-        # if the string has thousands, calculate hundreds alone by omitting the thousands place
-        if thousands_index > -1 and thousands_index != len(ascii_arr_clean)-1:
-            hundreds = convert_word_to_int(ascii_arr_clean[thousands_index+1:])
-        # if the string has millions, calculate hundreds alone by omitting the millions place
-        elif millions_index > -1 and millions_index != len(ascii_arr_clean)-1:
-            hundreds = convert_word_to_int(ascii_arr_clean[millions_index+1:])
-        # if the string has billions, calculate hundreds alone by omitting the billions place
-        elif billions_index > -1 and billions_index != len(ascii_arr_clean)-1:
-            hundreds = convert_word_to_int(ascii_arr_clean[billions_index+1:])
-        # process hundreds alone
-        elif thousands_index == -1 and millions_index == -1 and billions_index == -1:
-            hundreds = convert_word_to_int(ascii_arr_clean)
-        # no hundreds
-        else:
-            hundreds = 0
-        sum += hundreds
+        if(ascii_arr_clean[-1] != 'thousand' and ascii_arr_clean[-1] != 'million' and ascii_arr_clean[-1] != 'billion'):
+            # if the string has thousands, calculate hundreds alone by omitting the thousands place
+            if thousands_index > -1 and thousands_index != len(ascii_arr_clean)-1:
+                hundreds = convert_word_to_int(ascii_arr_clean[thousands_index+1:])
+            # if the string has millions, calculate hundreds alone by omitting the millions place
+            elif millions_index > -1 and millions_index != len(ascii_arr_clean)-1:
+                hundreds = convert_word_to_int(ascii_arr_clean[millions_index+1:])
+            # if the string has billions, calculate hundreds alone by omitting the billions place
+            elif billions_index > -1 and billions_index != len(ascii_arr_clean)-1:
+                hundreds = convert_word_to_int(ascii_arr_clean[billions_index+1:])
+            # process hundreds alone
+            elif thousands_index == -1 and millions_index == -1 and billions_index == -1:
+                hundreds = convert_word_to_int(ascii_arr_clean)
+            # no hundreds
+            else:
+                hundreds = 0
+            sum += hundreds
 
     return sum
 
