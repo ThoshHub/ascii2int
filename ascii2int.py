@@ -58,20 +58,40 @@ def convert_word_to_int(ascii_arr_clean):
         # example: ['forty', 'two'] => 42
         else:
             return int_arr[0] + int_arr[1]
+    else: # return that number if a list of length one is passed in
+        return int_arr[0]
 
 # converts text to integers
 def ascii2int(ascii_str):
     ascii_arr = ascii_str.strip().split()  # strip extra spaces and split sentence into words
     ascii_arr_clean = [i for i in ascii_arr if i in numbers_list] # remove words any words not in the numbers_list, for example "and"
     
+    # detect if the word "thousand" is in the input string
+    thousands_index = ascii_arr_clean.index('thousand') if 'thousand' in ascii_arr_clean else -1
     sum = 0 # value of the number that will be returned
 
     if len(ascii_arr_clean) == 1: # if the number is just one word, return the corresponding number
         return numbers_list[ascii_arr_clean[0]]
     else: # if the number has more than one word, feed it into the convert_word_to_int function
-        sum = convert_word_to_int(ascii_arr_clean)
+        
+        # if the number does have a thousands, then get the thousands multiplier
+        # for example ["four", "hundred", "thousand"] will return 400 which will be multiplied by 1000
+        # hundreds and less are processed belwo
+        if thousands_index > -1:
+            thousand_multiplier = convert_word_to_int(ascii_arr_clean[0:thousands_index])
+            print(thousand_multiplier)
+            sum += thousand_multiplier * 1000
+        
+        # if the string has thousands, calculate hundreds alone by omitting the thousands place
+        if thousands_index > -1 and thousands_index != len(ascii_arr_clean)-1:
+            hundreds = convert_word_to_int(ascii_arr_clean[thousands_index+1:])
+        # process hundreds alone
+        elif thousands_index == -1:
+            hundreds = convert_word_to_int(ascii_arr_clean)
+        else:
+            hundreds = 0
+        sum += hundreds
     return sum
-
 
 # Driver code, with test cases
 a = "one hundred"
@@ -82,4 +102,8 @@ e = "forty"
 f = "five hundred and twelve"
 g = "six hundred and one"
 h = "four hundred forty two"
-print(ascii2int(h))
+i = "four thousand four hundred and twelve"
+j = "four thousand four hundred and twenty one"
+k = "forty thousand four hundred and twenty one"
+l = "four hundred and twenty thousand four hundred and twenty one"
+print(ascii2int(l))
