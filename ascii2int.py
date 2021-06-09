@@ -147,10 +147,11 @@ test_n = "six hundred million and two hundred thousand and forty two"
 test_o = "ten billion forty thousand four hundred and twenty one"
 test_p = "ten million and forty"
 test_q = "ten billion and forty"
-test_p = "twenty nine billion four hundred thirty two million six hundred forty seven thousand nine hundred and twenty two"
+test_r = "twenty nine billion four hundred thirty two million six hundred forty seven thousand nine hundred and twenty two"
+test_s = "nine hundred and ninety nine billion nine hundred and ninety nine million nine hundred and ninety nine thousand nine hundred and ninety nine"
 
 if(len(sys.argv) > 1):
     num = " ".join(sys.argv[1:])
-    print(ascii2int(num))
 else:
-    print(ascii2int(test_p))
+    num = test_s
+print("Input: \n\t" + num + " \nOutput: \n\t" + str(ascii2int(num)))
