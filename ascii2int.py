@@ -34,16 +34,42 @@ numbers_list = {
     'trillion': 10000000000
 }
 
+def convert_word_to_int(ascii_arr_clean):
+    # replace string with number representation
+    # for example ['four', 'hundred', 'ten'] becomes [4, 100, 10]
+    int_arr = [numbers_list[number_word] for number_word in ascii_arr_clean]
+    
+    print(int_arr) # debug statement
+
+    # loops through input array
+    for number_word in ascii_arr_clean:
+        # if the array contains a 100, then multiply it by the preceding number
+        # for example: ['two', 'hundred] => 2 * 100 => 200
+        if 100 in int_arr:
+            return int_arr[0] * int_arr[1]
+        # otherwise, return the two numbers added together
+        # example: ['forty', 'two'] => 42
+        else:
+            return int_arr[0] + int_arr[1]
+
 # converts text to integers
 def ascii2int(ascii_str):
     ascii_arr = ascii_str.strip().split()  # strip extra spaces and split sentence into words
     ascii_arr_clean = [i for i in ascii_arr if i in numbers_list] # remove words any words not in the numbers_list, for example "and"
     
-    return 0
+    sum = 0 # value of the number that will be returned
+
+    if len(ascii_arr_clean) == 1: # if the number is just one word, return the corresponding number
+        return numbers_list[ascii_arr_clean[0]]
+    else:
+        sum = convert_word_to_int(ascii_arr_clean)
+    return sum
 
 
-# create some temporary test cases
+# Driver code, with test cases
 a = "one hundred"
 b = "four hundred"
 c = "five hundred and twenty one"
-print(ascii2int(c))
+d = "two"
+e = "forty"
+print(ascii2int(b))
