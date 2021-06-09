@@ -41,8 +41,11 @@ def convert_word_to_int(ascii_arr_clean):
     
     print(int_arr) # debug statement
 
-    # loops through input array
-    for number_word in ascii_arr_clean:
+    if len(int_arr) == 3:
+        # if there are three words, then the first must always be multiplied by the second,
+        # for example ['two', 'hundred', 'twelve'] => 2(100) + 12 => 12
+        return int_arr[0] * int_arr[1] + int_arr[2]
+    elif len(int_arr) == 2:
         # if the array contains a 100, then multiply it by the preceding number
         # for example: ['two', 'hundred] => 2 * 100 => 200
         if 100 in int_arr:
@@ -61,7 +64,7 @@ def ascii2int(ascii_str):
 
     if len(ascii_arr_clean) == 1: # if the number is just one word, return the corresponding number
         return numbers_list[ascii_arr_clean[0]]
-    else:
+    else: # if the number has more than one word, feed it into the convert_word_to_int function
         sum = convert_word_to_int(ascii_arr_clean)
     return sum
 
@@ -72,4 +75,6 @@ b = "four hundred"
 c = "five hundred and twenty one"
 d = "two"
 e = "forty"
-print(ascii2int(b))
+f = "five hundred and twelve"
+g = "six hundred and one"
+print(ascii2int(g))
