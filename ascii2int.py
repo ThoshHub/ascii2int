@@ -77,6 +77,10 @@ def ascii2int(ascii_str):
     # Raise an error if no valid words were found, valid meaning they are in numbers_list
     if len(ascii_arr_clean) == 0: raise ValueError("There were no valid number words found!") 
 
+    # Raise an error if user enters million,billion, our thousand more than once
+    if ascii_arr_clean.count('thousand') > 1 or ascii_arr_clean.count('million') > 1 or ascii_arr_clean.count('billion') > 1:
+        raise ValueError("You entered a redundant word! Please check your input string.")
+
     # detect if the word "thousand", "million", or "billion" is in the input string
     billions_index = ascii_arr_clean.index('billion') if 'billion' in ascii_arr_clean else -1
     millions_index = ascii_arr_clean.index('million') if 'million' in ascii_arr_clean else -1
