@@ -40,8 +40,12 @@ def convert_word_to_int(ascii_arr_clean):
     int_arr = [numbers_list[number_word] for number_word in ascii_arr_clean]
     
     print(int_arr) # debug statement
-
-    if len(int_arr) == 3:
+    
+    if len(int_arr) == 4:
+        # this case is for four digits, for example ['four', 'hundred', 'forty', 'two']
+        # the first two digits are multiplied, and the rest are added => 4(100) + 40 + 2 = 442
+        return (int_arr[0] * int_arr[1]) + int_arr[2] + int_arr[3]
+    elif len(int_arr) == 3:
         # if there are three words, then the first must always be multiplied by the second,
         # for example ['two', 'hundred', 'twelve'] => 2(100) + 12 => 12
         return int_arr[0] * int_arr[1] + int_arr[2]
@@ -77,4 +81,5 @@ d = "two"
 e = "forty"
 f = "five hundred and twelve"
 g = "six hundred and one"
-print(ascii2int(g))
+h = "four hundred forty two"
+print(ascii2int(h))
