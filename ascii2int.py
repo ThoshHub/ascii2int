@@ -35,7 +35,10 @@ numbers_list = {
 }
 
 # converts text to integers
-def ascii2int(ascii_num):
+def ascii2int(ascii_str):
+    ascii_arr = ascii_str.strip().split()  # strip extra spaces and split sentence into words
+    ascii_arr_clean = [i for i in ascii_arr if i in numbers_list] # remove words any words not in the numbers_list, for example "and"
+    
     return 0
 
 
@@ -43,4 +46,4 @@ def ascii2int(ascii_num):
 a = "one hundred"
 b = "four hundred"
 c = "five hundred and twenty one"
-print(ascii2int(a))
+print(ascii2int(c))
