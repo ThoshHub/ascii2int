@@ -74,6 +74,9 @@ def ascii2int(ascii_str):
     ascii_arr = ascii_str.strip().split()  # strip extra spaces and split sentence into words
     ascii_arr_clean = [i for i in ascii_arr if i in numbers_list] # remove words any words not in the numbers_list, for example "and"
     
+    # Raise an error if no valid words were found, valid meaning they are in numbers_list
+    if len(ascii_arr_clean) == 0: raise ValueError("There were no valid number words found!") 
+
     # detect if the word "thousand", "million", or "billion" is in the input string
     billions_index = ascii_arr_clean.index('billion') if 'billion' in ascii_arr_clean else -1
     millions_index = ascii_arr_clean.index('million') if 'million' in ascii_arr_clean else -1
