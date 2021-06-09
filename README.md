@@ -27,7 +27,11 @@ If the user chooses to call the program without any arguments, this program will
 
 ## Running Coverage Tests
 This project also comes with a tests.py file which can be used to run test cases using coverage.py which will show the code coverage.
-The test file can be run with the following command:
+
+Before running these tests, the user will need to install coverage using:
+> pip3 install coverage
+
+Then, the test file can be run with the following command:
 > python3 tests.py 
 
 By default, the report will be built in /convhtml of the root directory where the project is located.

@@ -39,6 +39,7 @@ numbers_list = {
 The following method converts an array of number words into an integer,
 input: a list of number words, for example ["five", "hundred"]
 output: a single integer, for example 500
+This method is limited to generating numbers below one thousand
 '''
 def convert_word_to_int(ascii_arr_clean):
     # replace string with number representation
