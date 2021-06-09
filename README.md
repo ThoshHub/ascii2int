@@ -8,6 +8,8 @@ __Restrictions__
 - This program cannot handle any number a trillion or above, it is only restricted to one billion and below
 - This program does not handle negative integers
 - This program accepts American English spelling, but not British English (forty not fourty)
+- This program can handle hyphenated strings, for example "forty six" will produce the same output as "forty-six": 46
+- This program does not handle commas
 
 __How to run__
 This program accepts command line arguments, for example:
@@ -20,3 +22,4 @@ will return a console output of:
 Quotes for a single argument is not necessary, the program will handle it automatically.
 
 If the user chooses to call the program without any arguments, this program will default to running a built in case. The user may choose the default case by editing the source.
+
